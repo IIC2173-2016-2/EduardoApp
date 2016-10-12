@@ -1,5 +1,4 @@
 <h2 class="page-header">Dashboard</h2>
-<p>Welcome to your dashboard</p>
 <!-- {{#each venues}}
 
   <a class="location-link" href="http://www.google.com/#q={{this.id}}">{{this.name}}</a>
@@ -46,7 +45,6 @@
                 var HTML = ""
                 for (var i = 0; i < data.length; i++) {
                     var obj = data[i];
-                    console.log(obj.id)
                     HTML += '<a class="location-link" ' + "href=http://assw9.ing.puc.cl/chat/chat_room/" + obj.id + ">" + obj.name ;
                     HTML += "</a>";
                 }
@@ -59,8 +57,6 @@
             },
         });
         var latlon = position.coords.latitude + "," + position.coords.longitude;
-        // x.innerHTML = "Latitude: " + position.coords.latitude +
-        //     "<br>Longitude: " + position.coords.longitude;
         var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" +
             latlon + "&zoom=14&size=400x300&sensor=true&markers=color:blue%7Clabel:A%7C" + latlon;
         document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";

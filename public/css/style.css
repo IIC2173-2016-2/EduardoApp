@@ -94,7 +94,18 @@ footer{
 .location-link{
   text-align: center;
   display: block;
-  padding: 5%;
+  padding: 2%;
   background-color: #4fc1c1;
   color: #f6f6f6;
+  border: 2px;
+  border-style: solid;
+  border-color: #f6f6f6;
+}
+#mapholder{
+  width: 50%;
+  margin-left: 25%;
+}
+
+.location-link:hover{
+  text-decoration: none;
 }
