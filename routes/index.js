@@ -3,6 +3,9 @@ var router = express.Router();
 var path = require('path');
 var handlebars = require('handlebars');
 var fs = require('fs');
+var app = express();
+
+// respond with "hello world" when a GET request is made to the homepage
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
@@ -18,11 +21,15 @@ router.get('/', ensureAuthenticated, function(req, res){
 	});
 });
 
+router.get("/string", function(req, res) {
+    var strings = ["rad", "bla", "ska"]
+    var n = Math.floor(Math.random() * strings.length)
+    res.send(strings[n])
+})
 
-
-
-function foursquare_venues(callback)
+function foursquare_venues(callback, lat, long)
 {
+//	console.log('entro al foursquare');
 	https = require("https")
 	var lat = -33.4196897;
 	var long = -70.6075518;

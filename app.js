@@ -65,6 +65,47 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
+app.get('/foursquare/:lat/:long', function(req, res) {
+  var lat = req.params.lat;
+  var long = req.params.long;
+
+  console.log(lat);
+  console.log(long);
+		foursquare_venues(function(venues){
+      console.log(venues);
+      res.json(venues);
+		},lat,long);
+});
+
+
+
+function foursquare_venues(callback, lat ,long)
+{
+	console.log('entro al foursquare');
+	https = require("https")
+	var lat = lat;
+	var long = long;
+
+	var body = [];
+	var venues;
+
+	var options = {
+		host: 'api.foursquare.com',
+		path: '/v2/venues/search?client_id=D0K5YSWBYXG44A5D3KUUSBADW2GH23KYFEISDJH1GO4YIYWJ&client_secret=XXYJGWDDSSHIMR4AJM13K4SS3IYTSKWSMQGA4N0ZEOJF0ARN&v=20130815&ll='+lat+','+long
+	};
+
+	https.request(options, function(res){
+		res.on('data', function(chunk){
+			body.push(chunk);
+		});
+		res.on('end', function(){
+			body = Buffer.concat(body).toString();
+			venues = JSON.parse(body)['response']['venues'];
+			callback(venues);
+		});
+	}).end();
+  console.log("termina de buscar cosas en foursquare");
+}
 // Global Vars
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
