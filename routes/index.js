@@ -18,6 +18,9 @@ router.get('/', ensureAuthenticated, function(req, res){
 	});
 });
 
+
+
+
 function foursquare_venues(callback)
 {
 	https = require("https")
