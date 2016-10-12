@@ -86,7 +86,15 @@ footer{
   margin-top:40px;
 }
 
+.chats{
+  width: 50%;
+  margin-left: 25%;
+}
+
 .location-link{
+  text-align: center;
   display: block;
-  margin-left: 5%;
+  padding: 5%;
+  background-color: #4fc1c1;
+  color: #f6f6f6;
 }
