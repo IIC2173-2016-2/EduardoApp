@@ -1,2 +1,7 @@
- <h2 class="page-header">Dashboard</h2>
-<p>Welcome to your dashboard</p>  
+<h2 class="page-header">Dashboard</h2>
+<p>Welcome to your dashboard</p>
+{{#each venues}}
+
+  <a class="location-link" href="http://www.google.com/#q={{this.id}}">{{this.name}}</a>
+
+{{/each}}
