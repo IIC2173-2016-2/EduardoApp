@@ -5,13 +5,25 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
 
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		res.redirect('/');
+	} else {
+		return next();
+	}
+}
+
+router.get('/',function(req,res){
+	res.redirect('/dashboard');
+});
+
 // Register
 router.get('/register', function(req, res){
 	res.render('register');
 });
 
 // Login
-router.get('/login', function(req, res){
+router.get('/login',ensureAuthenticated, function(req, res){
 	res.render('login');
 });
 
@@ -69,7 +81,7 @@ router.post('/register', function(req, res){
 
 		req.flash('success_msg', 'You are registered and can now login');
 
-		res.redirect('/users/login');
+		res.redirect('./login');
 	}
 });
 
@@ -103,9 +115,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/dashboard', failureRedirect:'./login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('./');
   });
 
 router.get('/logout', function(req, res){
@@ -113,7 +125,7 @@ router.get('/logout', function(req, res){
 
 	req.flash('success_msg', 'You are logged out');
 
-	res.redirect('/users/login');
+	res.redirect('./login');
 });
 
 module.exports = router;

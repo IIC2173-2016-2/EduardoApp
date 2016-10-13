@@ -65,6 +65,8 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
+
+
 app.get('/foursquare/:lat/:long', function(req, res) {
   var lat = req.params.lat;
   var long = req.params.long;
@@ -116,8 +118,7 @@ app.use(function (req, res, next) {
 });
 
 
-
-app.use('/', routes);
+app.use('/dashboard', routes);
 app.use('/users', users);
 
 // Set Port
