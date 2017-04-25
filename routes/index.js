@@ -39,7 +39,7 @@ function foursquare_venues(callback, lat, long)
 
 	var options = {
 		host: 'api.foursquare.com',
-		path: '/v2/venues/search?client_id='+ process.env.CLIENT_ID + '&client_secret=' +process.env.CLIENT_SECRET+'&ll='+lat+','+long
+		path: '/v2/venues/search?client_id='+ process.env.CLIENT_ID + '&client_secret=' +process.env.CLIENT_SECRET+'&ll='+lat+','+long+'&v=20161102&m=foursquare'
 	};
 
 	https.request(options, function(res){
